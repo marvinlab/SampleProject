@@ -26,8 +26,8 @@
 #define kSPLodsBGMTop @"bgm00_top_lp"
 #define kSPLodsBGMEvBattle @"bgm01_event_battle"
 #define kSPLodsBGMEvQuest @"bgm02_event_quest"
-#define kSPLodsBGMNormBattle @"bgm01_normal_battle"
-#define kSPLodsBGMNormQuest @"bgm02_normal_quest"
+#define kSPLodsBGMNormBattle @"bgm03_nomal_battle"
+#define kSPLodsBGMNormQuest @"bgm04_nomal_quest"
 #define kSPLodsBGMRaid1 @"bgm05_raid_01"
 #define kSPLodsBGMRaid2 @"bgm05_raid_02"
 
