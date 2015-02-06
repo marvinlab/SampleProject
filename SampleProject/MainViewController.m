@@ -22,24 +22,21 @@
 @property (nonatomic, retain) ALChannelSource* channel;
 @property (nonatomic, retain) OALAudioTrack* audioTrack;
 
-
 @property (retain, nonatomic) NSArray *arrayOfSounds;
 
 -(IBAction)playSelectedTrack:(id)sender;
 -(IBAction)stopSelectedTrack:(id)sender;
+-(IBAction)soundOverBtn:(id)sender;
 
 @end
 
 @implementation MainViewController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
     self.songPicker.delegate = self;
     self.arrayOfSounds = [[NSArray alloc]initWithObjects:kSPDemoAudioColdFunkIntro,kSPDemoAudioColdFunk,kSPDemoAudioHappyAlley,kSPDemoAudioPew,kSPDemoAudioPow,kSPLodsBGMEvBattle,kSPLodsBGMEvQuest,kSPLodsBGMNormBattle,kSPLodsBGMNormQuest,kSPLodsBGMRaid1,kSPLodsBGMRaid2,kSPLodsBGMTop,kSPLodsSEBattleKilled,kSPLodsSEBattleLost,kSPLodsSEBattleRobbed,kSPLodsSEBattleWon,kSPLodsSECollectionComplete,kSPLodsSECommon1,kSPLodsSECommon2,kSPLodsSECommon3,kSPLodsSEExpUp,kSPLodsSEFairiesCollected,kSPLodsSEFairiesSend,kSPLodsSEIncentiveAccept,kSPLodsSEIntro,kSPLodsSEPlayerLVUp,kSPLodsSEQuestBossAtk,kSPLodsSEQuestBossAtkCritical,kSPLodsSEQuestBossDamaged,kSPLodsSEQuestComplete,kSPLodsSEQuestWalk,kSPLodsSERaidAtk1,kSPLodsSERaidAtk2,kSPLodsSERaidAtk3,kSPLodsSERaidAtk4,kSPLodsSERaidAtk5,kSPLodsSERaidAtkFinish,kSPLodsSERaidDmg1,kSPLodsSERaidDmg2,kSPLodsSERaidDmg3,kSPLodsSERaidIn,kSPLodsSERaidLose,kSPLodsSERaidOut,kSPLodsSERaidSkl1,kSPLodsSERaidSkl2,kSPLodsSERaidSkl3,kSPLodsSERaidSkl4,kSPLodsSERaidSkl5,kSPLodsSERaidSklDef1,kSPLodsSERaidSklDef2,kSPLodsSERaidSklDef3,kSPLodsSERaidSklDmgCap,kSPLodsSERaidSklHeal,kSPLodsSERaidSklSeal,kSPLodsSERaidWin,kSPLodsSERaidWordCutin,kSPLodsSERecover,kSPLodsSESecretBoxOpen,kSPLodsSESecretBoxStart,kSPLodsSEShopBuy,kSPLodsSEStoryPage,kSPLodsSEUnitEvolve,kSPLodsSEWarriorLVUp,nil];
-
-
 }
 
 - (void)dealloc {
@@ -59,12 +56,19 @@
     //NSLog(@"%@",[self.arrayOfSounds objectAtIndex:[self.songPicker selectedRowInComponent:0]]);
     NSString *selectedSong = [[self.arrayOfSounds objectAtIndex:[self.songPicker selectedRowInComponent:0]] stringByAppendingString:kSPSoundFileExtensionCaf];
 
-    [[OALSimpleAudio sharedInstance]playBg:selectedSong];
+    self.audioTrack = [[OALAudioTrack alloc]init];
+    [self.audioTrack playFile:selectedSong loops:-1];
+
 }
 
 -(void)stopSelectedTrack:(id)sender
 {
-    [[OALSimpleAudio sharedInstance]stopBg];
+    self.audioTrack = nil;
+}
+
+-(void)soundOverBtn:(id)sender
+{
+    
 }
 
 #pragma mark ################### Picker View Data Source ####################
@@ -84,6 +88,7 @@
 {
     return [self.arrayOfSounds objectAtIndex:row];
 }
+
 
 
 
