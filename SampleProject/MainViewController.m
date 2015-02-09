@@ -117,10 +117,12 @@
         [self.muteUnmute setOn:YES animated:YES];
         self.audioTrack.muted = NO;
         [self.muteLabel setText:@"Mute"];
+        self.volumeSlider.enabled = YES;
     } else {
         [self.muteUnmute setOn:NO animated:YES];
         self.audioTrack.muted = YES;
         [self.muteLabel setText:@"Unmute"];
+        self.volumeSlider.enabled = NO;
     }
 }
 
